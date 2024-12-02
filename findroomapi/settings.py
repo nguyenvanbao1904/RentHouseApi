@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app.apps.AppConfig'
+    'app.apps.AppConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,12 @@ MEDIA_ROOT = '%s/app/static/' % BASE_DIR
 
 #cho phep dang ky token bang json thay vi from data cua post
 OAUTH2_PROVIDER = { 'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore' }
+
+#Cloudinary Configuration
+import cloudinary
+cloudinary.config(
+    cloud_name = "dxcux00kk",
+    api_key = "251671149248596",
+    api_secret = "DnT4qIXRKdXBh5qtbh4Sh6qMVoo", # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
