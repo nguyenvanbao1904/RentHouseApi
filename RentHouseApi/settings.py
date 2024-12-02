@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'RentHouseApi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'find_room_db',
-        'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST':'localhost',
+        'NAME': 'nguyenvanbao$find_room_db',
+        'USER': 'nguyenvanbao',
+        'PASSWORD': 'baoMysql1904@',
+        'HOST':'nguyenvanbao.mysql.pythonanywhere-services.com',
         'PORT':'3306',
     }
 }
