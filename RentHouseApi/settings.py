@@ -25,11 +25,7 @@ SECRET_KEY = 'django-insecure-=4(xjm+a3eknia3yj_j8q3f_i2sas3_)naql=9yy@@@6%q$$_)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'nguyenvanbao.pythonanywhere.com',
-    '127.0.0.1',
-    'localhost',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,6 +40,7 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'rest_framework',
     'drf_yasg',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -83,10 +82,10 @@ WSGI_APPLICATION = 'RentHouseApi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nguyenvanbao$find_room_db',
-        'USER': 'nguyenvanbao',
-        'PASSWORD': 'baoMysql1904@',
-        'HOST':'nguyenvanbao.mysql.pythonanywhere-services.com',
+        'NAME': 'rent_house_db',
+        'USER': 'root',
+        'PASSWORD': '12345678',
+        'HOST':'localhost',
         'PORT':'3306',
     }
 }
@@ -151,3 +150,21 @@ cloudinary.config(
     api_secret = "DnT4qIXRKdXBh5qtbh4Sh6qMVoo", # Click 'View API Keys' above to copy your API secret
     secure=True
 )
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://127.0.0.1:8000/complete/google-oauth2/'
+import os
+from dotenv import load_dotenv
+
+# Tải tệp .env
+load_dotenv()
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+SOCIAL_AUTH_USER_MODEL = 'app.User'
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'

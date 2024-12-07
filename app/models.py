@@ -32,8 +32,6 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     avatar = CloudinaryField('image', null=False, blank=False)
-    oauth_provider = models.CharField(max_length=50, null=True)
-    oauth_uid = models.CharField(max_length=255, null=True)
     role = models.CharField(max_length=10, choices=Role.choices, default=Role.USER)
 
     objects = UserManager()
